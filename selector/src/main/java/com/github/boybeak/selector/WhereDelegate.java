@@ -125,8 +125,29 @@ public class WhereDelegate<T> {
         return null;
     }
 
-    public T findFirst () {
+    public int firstIndex () {
         if (!mSelector.isEmpty()) {
+            int size = mSelector.getSize();
+            for (int i = 0; i < size; i++) {
+                Object object = mSelector.get(i);
+                if (isT(object)) {
+                    T t = (T)object;
+                    if (whereList.isEmpty() || accept(t)) {
+                        return i;
+                    }
+                }
+            }
+        }
+        return -1;
+    }
+
+    public T findFirst () {
+        int index = firstIndex();
+        if (index >= 0) {
+            return (T)mSelector.get(index);
+        }
+        return null;
+        /*if (!mSelector.isEmpty()) {
             int size = mSelector.getSize();
             for (int i = 0; i < size; i++) {
                 Object object = mSelector.get(i);
@@ -138,11 +159,32 @@ public class WhereDelegate<T> {
                 }
             }
         }
-        return null;
+        return null;*/
+    }
+
+    public int lastIndex () {
+        if (!mSelector.isEmpty()) {
+            int size = mSelector.getSize();
+            for (int i = size - 1; i >= 0; i--) {
+                Object object = mSelector.get(i);
+                if (isT(object)) {
+                    T t = (T)object;
+                    if (whereList.isEmpty() || accept(t)) {
+                        return i;
+                    }
+                }
+            }
+        }
+        return -1;
     }
 
     public T findLast () {
-        if (!mSelector.isEmpty()) {
+        int index = lastIndex();
+        if (index >= 0) {
+            return (T)mSelector.get(index);
+        }
+        return null;
+        /*if (!mSelector.isEmpty()) {
             int size = mSelector.getSize();
             for (int i = size - 1; i >= 0; i--) {
                 Object object = mSelector.get(i);
@@ -154,7 +196,7 @@ public class WhereDelegate<T> {
                 }
             }
         }
-        return null;
+        return null;*/
     }
 
     public int count () {

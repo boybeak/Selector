@@ -10,12 +10,26 @@ import java.util.List;
 public enum Operator {
 
     OPERATOR_EQUAL {
+        /**
+         *
+         * @param v1
+         * @param v2    only consider the first value.
+         * @param <V>
+         * @return
+         */
         @Override
         <V> boolean accept(V v1, V ... v2) {
             return v1 != null && v1.equals(v2[0]);
         }
     },
     OPERATOR_NOT_EQUAL {
+        /**
+         *
+         * @param v1
+         * @param v2    only consider the first value.
+         * @param <V>
+         * @return
+         */
         @Override
         <V> boolean accept(V v1, V ... v2) {
             if (v1 == null) {
@@ -25,6 +39,13 @@ public enum Operator {
         }
     },
     OPERATOR_GT {
+        /**
+         *
+         * @param v1
+         * @param v2    only consider the first value.
+         * @param <V>
+         * @return
+         */
         @Override
         <V> boolean accept(V v1, V ... v2) {
             if (v1 != null && v2 != null) {
@@ -38,6 +59,13 @@ public enum Operator {
         }
     },
     OPERATOR_LT {
+        /**
+         *
+         * @param v1
+         * @param v2    only consider the first value.
+         * @param <V>
+         * @return
+         */
         @Override
         <V> boolean accept(V v1, V ... v2) {
             if (v1 != null && v2 != null) {
@@ -51,6 +79,13 @@ public enum Operator {
         }
     },
     OPERATOR_GT_EQUAL {
+        /**
+         *
+         * @param v1
+         * @param v2    only consider the first value.
+         * @param <V>
+         * @return
+         */
         @Override
         <V> boolean accept(V v1, V ... v2) {
             if (v1 != null && v2 != null) {
@@ -64,6 +99,13 @@ public enum Operator {
         }
     },
     OPERATOR_LT_EQUAL {
+        /**
+         *
+         * @param v1
+         * @param v2    only consider the first value.
+         * @param <V>
+         * @return
+         */
         @Override
         <V> boolean accept(V v1, V ... v2) {
             if (v1 != null && v2 != null) {
@@ -90,10 +132,14 @@ public enum Operator {
             return !list.contains(v1);
         }
     },
-    /**
-     * data in ()
-     */
     OPERATOR_BETWEEN {
+        /**
+         *
+         * @param v1
+         * @param v2    only allow 2 values, consider (smallerOne, biggerOne).
+         * @param <V>
+         * @return
+         */
         @Override
         <V> boolean accept(V v1, V ... v2) {
             if (v1 != null && v2 != null) {
@@ -107,10 +153,14 @@ public enum Operator {
             return false;
         }
     },
-    /**
-     * data in [)
-     */
     OPERATOR_I_BETWEEN {
+        /**
+         *
+         * @param v1
+         * @param v2    only allow 2 values, consider [smallerOne, biggerOne).
+         * @param <V>
+         * @return
+         */
         @Override
         <V> boolean accept(V v1, V ... v2) {
             if (v1 != null && v2 != null) {
@@ -124,10 +174,14 @@ public enum Operator {
             return false;
         }
     },
-    /**
-     * data in (]
-     */
     OPERATOR_BETWEEN_I {
+        /**
+         *
+         * @param v1
+         * @param v2    only allow 2 values, consider (smallerOne, biggerOne].
+         * @param <V>
+         * @return
+         */
         @Override
         <V> boolean accept(V v1, V ... v2) {
             if (v1 != null && v2 != null) {
@@ -141,10 +195,14 @@ public enum Operator {
             return false;
         }
     },
-    /**
-     * data in []
-     */
     OPERATOR_I_BETWEEN_I {
+        /**
+         *
+         * @param v1
+         * @param v2    only allow 2 values, consider [smallerOne, biggerOne].
+         * @param <V>
+         * @return
+         */
         @Override
         <V> boolean accept(V v1, V ... v2) {
             if (v1 != null && v2 != null) {
@@ -176,5 +234,5 @@ public enum Operator {
         return false;
     }
 
-    private static final String TAG = Operator.class.getSimpleName();
+//    private static final String TAG = Operator.class.getSimpleName();
 }

@@ -41,6 +41,14 @@ public class ListSelector<T> extends Selector<T>{
         return mList.get(index);
     }
 
+    public void remove () {
+        remove(null);
+    }
+
+    public void remove (OnRemoveCallback<T> callback) {
+        mWhereDelegate.remove(callback);
+    }
+
     @Override
     ListWhereDelegate<T> getWhereDelegate() {
         return mWhereDelegate;
@@ -53,6 +61,11 @@ public class ListSelector<T> extends Selector<T>{
         }
 
         public void remove () {
+            remove(null);
+        }
+
+        public void remove (OnRemoveCallback<T> callback) {
+            int count = 0;
             if (!isEmpty()) {
                 Iterator iterator = mList.iterator();
                 while (iterator.hasNext()) {
@@ -61,10 +74,22 @@ public class ListSelector<T> extends Selector<T>{
                         T t = (T)obj;
                         if (getWhereList().isEmpty() || accept(t)) {
                             iterator.remove();
+                            if (callback != null) {
+                                callback.onRemoved(count, t);
+                            }
+                            count++;
                         }
                     }
                 }
             }
+            if (callback != null) {
+                callback.onRemoveComplete(count);
+            }
         }
+    }
+
+    public interface OnRemoveCallback<T> {
+        void onRemoved (int n, T t);
+        void onRemoveComplete (int count);
     }
 }
