@@ -27,5 +27,11 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" name="selector.selector-1.2.0" level="project" />
+    <orderEntry type="library" exported="" name="selector.selector-1.2.0-javadoc" level="project" />
+    <orderEntry type="library" exported="" name="selector.selector-1.2.0-sources" level="project" />
+    <orderEntry type="library" exported="" name="selector.selector-1.2.0" level="project" />
+    <orderEntry type="library" exported="" name="selector.selector-1.2.0" level="project" />
+    <orderEntry type="library" exported="" name="selector.selector-1.2.0" level="project" />
   </component>
 </module>
