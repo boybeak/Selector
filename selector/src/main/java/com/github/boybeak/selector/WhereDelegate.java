@@ -106,8 +106,8 @@ public class WhereDelegate<T> {
         }
     }
 
-    public List<T> findAll () {
-        List<T> tList = new ArrayList<>();
+    public ArrayList<T> findAll () {
+        ArrayList<T> tList = new ArrayList<>();
         if (!mSelector.isEmpty()) {
 
             int size = mSelector.getSize();
@@ -217,14 +217,14 @@ public class WhereDelegate<T> {
         return 0;
     }
 
-    public <V> List<V> extractAll (Path<T, V> path) {
+    public <V> ArrayList<V> extractAll (Path<T, V> path) {
         return extractAll(path, false);
     }
 
-    public <V> List<V> extractAll (Path<T, V> path, final boolean ignoreRepeat) {
+    public <V> ArrayList<V> extractAll (Path<T, V> path, final boolean ignoreRepeat) {
 
         if (!mSelector.isEmpty()) {
-            List<V> vList = new ArrayList<>();
+            ArrayList<V> vList = new ArrayList<>();
             final int size = mSelector.getSize();
             for (int i = 0; i < size; i++) {
                 Object object = mSelector.get(i);

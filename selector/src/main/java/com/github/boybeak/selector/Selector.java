@@ -1,5 +1,6 @@
 package com.github.boybeak.selector;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -77,7 +78,7 @@ public abstract class Selector<T> {
         getWhereDelegate().map(action);
     }
 
-    public List<T> findAll () {
+    public ArrayList<T> findAll () {
         return getWhereDelegate().findAll();
     }
 
@@ -93,7 +94,7 @@ public abstract class Selector<T> {
         return getWhereDelegate().count();
     }
 
-    public <V> List<V> extractAll(Path<T, V> path) {
+    public <V> ArrayList<V> extractAll(Path<T, V> path) {
         return getWhereDelegate().extractAll(path);
     }
 
