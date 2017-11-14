@@ -2,6 +2,7 @@ package com.github.boybeak.selector;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import java.util.Arrays;
 
 /**
  * Created by gaoyunfei on 2017/6/14.
@@ -66,7 +67,7 @@ public class Where<T, V> {
             Where ow = (Where)obj;
             return path != null && path.equals(ow.path)
                 && operator != null && operator.equals(ow.operator)
-                && value != null && value.equals(ow.value);
+                && value != null && Arrays.equals(value, ow.value);
         }
         return false;
     }
