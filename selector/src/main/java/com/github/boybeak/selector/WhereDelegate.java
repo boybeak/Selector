@@ -60,7 +60,7 @@ public class WhereDelegate<T> {
     }
 
     boolean acceptXor (boolean a, boolean b) {
-        return a == b;
+        return a != b;
     }
 
     <V> boolean accept (T t) {
