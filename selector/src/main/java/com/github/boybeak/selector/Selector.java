@@ -98,6 +98,26 @@ public abstract class Selector<T> {
         return getWhereDelegate().extractAll(path);
     }
 
+    public <V> String stringConnect (Path<T, V> path, char connectWith) {
+        return stringConnect(path, connectWith);
+    }
+
+    public <V> String stringConnect (Path<T, V> path, String connectWith) {
+        ArrayList<V> values = extractAll(path);
+        if (values != null && !values.isEmpty()) {
+            StringBuilder builder = new StringBuilder();
+            int length = values.size();
+            for (int i = 0; i < length; i++) {
+                if (i > 0) {
+                    builder.append(connectWith);
+                }
+                builder.append(values.get(i).toString());
+            }
+            return builder.toString();
+        }
+        return "";
+    }
+
     /**
      * Extract the first value find by path
      * @param path
