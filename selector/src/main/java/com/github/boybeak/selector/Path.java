@@ -44,6 +44,11 @@ public class Path<T, V> {
         return this;
     }
 
+    public Path<T, V> methodWithPairs (String name, Pair<Class, ?> ... typeValues) {
+        mItems.add(new Item<V>(name, Item.TYPE_METHOD, typeValues));
+        return this;
+    }
+
     public V extract (T t) {
         Object obj = t;
         for (Item item : mItems) {
@@ -62,6 +67,7 @@ public class Path<T, V> {
         public String name;
         @Type int type;
 
+        Class[] classes;
         Object[] params;
 
         Item (String name, @Type int type) {
@@ -73,6 +79,29 @@ public class Path<T, V> {
             this.name = name;
             this.type = type;
             this.params = params;
+            if (params != null && params.length > 0) {
+                classes = new Class[params.length];
+                for (int i = 0; i < classes.length; i++) {
+                    if (params[i] != null) {
+                        classes[i] = params[i].getClass();
+                    }
+                }
+            }
+        }
+
+        Item (String name, @Type int type, Pair<Class, ?> ... typeValueList) {
+            this.name = name;
+            this.type = type;
+
+            if (typeValueList != null && typeValueList.length > 0) {
+                classes = new Class[typeValueList.length];
+                params = new Object[typeValueList.length];
+                for (int i = 0; i < typeValueList.length; i++) {
+                    Pair<Class, ?> pair = typeValueList[i];
+                    classes[i] = pair.fst;
+                    params[i] = pair.snd;
+                }
+            }
         }
 
         public Object getValue (Object object) {
@@ -94,18 +123,10 @@ public class Path<T, V> {
                     break;
                 case TYPE_METHOD:
                     try {
-                        Class[] paramsClz = null;
-                        if (params != null && params.length > 0) {
-                            paramsClz = new Class[params.length];
-                            for (int i = 0; i < paramsClz.length; i++) {
-                                if (params[i] != null) {
-                                    paramsClz[i] = params[i].getClass();
-                                }
-                            }
-                        }
-                        Method method = clz.getMethod(name, paramsClz);
-                        return method.invoke(object);
+                        Method method = clz.getMethod(name, classes);
+                        return method.invoke(object, params);
                     } catch (NoSuchMethodException e1) {
+                        System.err.println("getValue " + clz.getName());
                         e1.printStackTrace();
                     } catch (InvocationTargetException e1) {
                         e1.printStackTrace();
@@ -115,6 +136,16 @@ public class Path<T, V> {
                     break;
             }
             return null;
+        }
+    }
+
+    public static class Pair<FST, SND> {
+        public FST fst;
+        public SND snd;
+
+        public Pair(FST fst, SND snd) {
+            this.fst = fst;
+            this.snd = snd;
         }
     }
 }
