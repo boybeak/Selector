@@ -3,3 +3,6 @@
 # Selector
 
 A quick data set querying tool library
+```groovy
+implementation 'com.github.boybeak:selector:1.2.7'
+```
