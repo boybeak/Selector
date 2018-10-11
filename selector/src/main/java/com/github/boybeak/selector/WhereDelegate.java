@@ -120,9 +120,8 @@ public class WhereDelegate<T> {
                     }
                 }
             }
-            return tList;
         }
-        return null;
+        return tList;
     }
 
     public int firstIndex () {
@@ -222,9 +221,9 @@ public class WhereDelegate<T> {
     }
 
     public <V> ArrayList<V> extractAll (Path<T, V> path, final boolean ignoreRepeat) {
-
+        ArrayList<V> vList = new ArrayList<>();
         if (!mSelector.isEmpty()) {
-            ArrayList<V> vList = new ArrayList<>();
+
             final int size = mSelector.getSize();
             for (int i = 0; i < size; i++) {
                 Object object = mSelector.get(i);
@@ -239,9 +238,8 @@ public class WhereDelegate<T> {
                     }
                 }
             }
-            return vList;
         }
-        return null;
+        return vList;
 
     }
 
