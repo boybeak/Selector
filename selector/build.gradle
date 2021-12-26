@@ -1,9 +1,7 @@
 apply plugin: 'java'
-apply plugin: 'com.jfrog.bintray'
-apply plugin: 'maven'
-apply plugin: 'maven-publish'
+apply from: '../publish-script.gradle'
 
-group = 'com.github.boybeak'
+/*group = 'com.github.boybeak'
 version = '1.2.7'
 publishing {
     publications {
@@ -53,7 +51,7 @@ bintray {
             attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
         }
     }
-}
+}*/
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.4'

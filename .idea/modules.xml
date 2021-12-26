@@ -3,8 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Selector.iml" filepath="$PROJECT_DIR$/Selector.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/selector/selector.iml" filepath="$PROJECT_DIR$/selector/selector.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Selector.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Selector.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/selector/Selector.selector.iml" filepath="$PROJECT_DIR$/.idea/modules/selector/Selector.selector.iml" />
     </modules>
   </component>
 </project>
